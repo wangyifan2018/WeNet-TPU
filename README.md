@@ -1,4 +1,4 @@
-# WeNet & Sophgo TPU
+# WeNet & Sophgo TPU (BM1684X)
 
 ### Setup
 * Step 1. Setup environment. It depends on Sophgo driver.
@@ -11,7 +11,7 @@ https://doc.sophgo.com/sdk-docs/v23.09.01-lts/docs_latest_release/docs/libsophon
 
 ``` sh
 # Assume current dir is `Wenet-TPU`
-# Local compole, for PCIE mode
+# Local compile, for PCIE mode
 cmake -B build -DTPU=ON -DONNX=OFF -DTORCH=OFF -DWEBSOCKET=OFF -DGRPC=OFF
 cmake --build build -j$(nproc)
 
@@ -50,73 +50,73 @@ export GLOG_v=3
     --tpu_model_dir ./bmodel \
     --unit_path ./bmodel/units.txt 2>&1 | tee log.txt
 
-I0218 20:02:57.592820 2349253 params.h:224] Reading SOPHGO TPU model from ./bmodel
-I0218 20:02:58.228825 2349253 tpu_asr_model.cc:60] TPU Encoder:
-I0218 20:02:58.228866 2349253 tpu_asr_model.cc:15]      Input-0: Shape [1,1,71,80]
-I0218 20:02:58.228873 2349253 tpu_asr_model.cc:15]      Input-1: Shape [1,96,128,128]
-I0218 20:02:58.228878 2349253 tpu_asr_model.cc:15]      Input-2: Shape [1,512,12,6]
-I0218 20:02:58.228883 2349253 tpu_asr_model.cc:15]      Input-3: Shape [1,8,8,136]
-I0218 20:02:58.228888 2349253 tpu_asr_model.cc:22]      Output-0: Shape [1,512,1,8]
-I0218 20:02:58.228893 2349253 tpu_asr_model.cc:22]      Output-1: Shape [1,96,128,128]
-I0218 20:02:58.228896 2349253 tpu_asr_model.cc:22]      Output-2: Shape [1,512,12,6]
-I0218 20:02:58.228901 2349253 tpu_asr_model.cc:62] TPU CTC:
-I0218 20:02:58.228906 2349253 tpu_asr_model.cc:15]      Input-0: Shape [1,512,1,8]
-I0218 20:02:58.228910 2349253 tpu_asr_model.cc:22]      Output-0: Shape [1,5538,1,8]
-I0218 20:02:58.228915 2349253 tpu_asr_model.cc:79] TPU Model Info:
-I0218 20:02:58.228919 2349253 tpu_asr_model.cc:80]      chunk_size 8
-I0218 20:02:58.228924 2349253 tpu_asr_model.cc:81]      num_left_chunks 16
-I0218 20:02:58.228929 2349253 tpu_asr_model.cc:82]      subsampling_rate 8
-I0218 20:02:58.228933 2349253 tpu_asr_model.cc:83]      right context 14
-I0218 20:02:58.228937 2349253 tpu_asr_model.cc:84]      sos 5537
-I0218 20:02:58.228941 2349253 tpu_asr_model.cc:85]      eos 5537
-I0218 20:02:58.228945 2349253 tpu_asr_model.cc:86]      is bidirectional decoder 0
-I0218 20:02:58.228950 2349253 tpu_asr_model.cc:87]      hidden_dim 512
-I0218 20:02:58.228955 2349253 params.h:236] Reading unit table ./bmodel/units.txt
-I0218 20:02:58.254217 2349258 decoder_main.cc:54] num frames 418
-I0218 20:02:58.275568 2349258 asr_decoder.cc:104] Required 71 get 71
-I0218 20:02:58.276309 2349258 tpu_asr_model.cc:145]     wenet encoder inference start
-I0218 20:02:58.290501 2349258 tpu_asr_model.cc:151]     wenet ctc inference
-I0218 20:02:58.297973 2349258 asr_decoder.cc:119] forward takes 16 ms, search takes 6 ms
-I0218 20:02:58.298957 2349258 asr_decoder.cc:104] Required 64 get 64
-I0218 20:02:58.300158 2349258 tpu_asr_model.cc:145]     wenet encoder inference start
-I0218 20:02:58.314263 2349258 tpu_asr_model.cc:151]     wenet ctc inference
-I0218 20:02:58.321837 2349258 asr_decoder.cc:119] forward takes 16 ms, search takes 6 ms
-I0218 20:02:58.322494 2349258 asr_decoder.cc:200] Partial CTC result 甚至出
-I0218 20:02:58.322521 2349258 decoder_main.cc:72] Partial result: 甚至出
-I0218 20:02:58.322566 2349258 asr_decoder.cc:104] Required 64 get 64
-I0218 20:02:58.323271 2349258 tpu_asr_model.cc:145]     wenet encoder inference start
-I0218 20:02:58.337425 2349258 tpu_asr_model.cc:151]     wenet ctc inference
-I0218 20:02:58.345198 2349258 asr_decoder.cc:119] forward takes 15 ms, search takes 6 ms
-I0218 20:02:58.345960 2349258 asr_decoder.cc:200] Partial CTC result 甚至出现交
-I0218 20:02:58.345988 2349258 decoder_main.cc:72] Partial result: 甚至出现交
-I0218 20:02:58.346033 2349258 asr_decoder.cc:104] Required 64 get 64
-I0218 20:02:58.346920 2349258 tpu_asr_model.cc:145]     wenet encoder inference start
-I0218 20:02:58.361013 2349258 tpu_asr_model.cc:151]     wenet ctc inference
-I0218 20:02:58.368747 2349258 asr_decoder.cc:119] forward takes 15 ms, search takes 6 ms
-I0218 20:02:58.369547 2349258 asr_decoder.cc:200] Partial CTC result 甚至出现交易几乎
-I0218 20:02:58.369575 2349258 decoder_main.cc:72] Partial result: 甚至出现交易几乎
-I0218 20:02:58.369627 2349258 asr_decoder.cc:104] Required 64 get 64
-I0218 20:02:58.370513 2349258 tpu_asr_model.cc:145]     wenet encoder inference start
-I0218 20:02:58.384685 2349258 tpu_asr_model.cc:151]     wenet ctc inference
-I0218 20:02:58.392577 2349258 asr_decoder.cc:119] forward takes 15 ms, search takes 6 ms
-I0218 20:02:58.393424 2349258 asr_decoder.cc:200] Partial CTC result 甚至出现交易几乎停滞的
-I0218 20:02:58.393453 2349258 decoder_main.cc:72] Partial result: 甚至出现交易几乎停滞的
-I0218 20:02:58.393502 2349258 asr_decoder.cc:104] Required 64 get 64
-I0218 20:02:58.394282 2349258 tpu_asr_model.cc:145]     wenet encoder inference start
-I0218 20:02:58.408318 2349258 tpu_asr_model.cc:151]     wenet ctc inference
-I0218 20:02:58.416445 2349258 asr_decoder.cc:119] forward takes 15 ms, search takes 7 ms
-I0218 20:02:58.417212 2349258 asr_decoder.cc:200] Partial CTC result 甚至出现交易几乎停滞的情况
-I0218 20:02:58.417238 2349258 decoder_main.cc:72] Partial result: 甚至出现交易几乎停滞的情况
-I0218 20:02:58.417268 2349258 asr_decoder.cc:104] Required 64 get 27
-I0218 20:02:58.418009 2349258 tpu_asr_model.cc:145]     wenet encoder inference start
-I0218 20:02:58.432065 2349258 tpu_asr_model.cc:151]     wenet ctc inference
-I0218 20:02:58.439682 2349258 asr_decoder.cc:119] forward takes 15 ms, search takes 6 ms
-I0218 20:02:58.440428 2349258 asr_decoder.cc:200] Partial CTC result 甚至出现交易几乎停滞的情况
-I0218 20:02:58.441246 2349258 asr_decoder.cc:200] Partial CTC result 甚至出现交易几乎停滞的情况
-I0218 20:02:58.441252 2349258 asr_decoder.cc:84] Rescoring cost latency: 0ms.
-I0218 20:02:58.441257 2349258 decoder_main.cc:72] Partial result: 甚至出现交易几乎停滞的情况
-I0218 20:02:58.441262 2349258 decoder_main.cc:104] test Final result: 甚至出现交易几乎停滞的情况
-I0218 20:02:58.441270 2349258 decoder_main.cc:105] Decoded 4203ms audio taken 162ms.
+I0219 14:31:10.723145 2508725 params.h:224] Reading SOPHGO TPU model from ./bmodel
+I0219 14:31:11.230612 2508725 tpu_asr_model.cc:60] TPU Encoder:
+I0219 14:31:11.230625 2508725 tpu_asr_model.cc:15]      Input-0: Shape [1,1,71,80]
+I0219 14:31:11.230626 2508725 tpu_asr_model.cc:15]      Input-1: Shape [1,96,128,128]
+I0219 14:31:11.230628 2508725 tpu_asr_model.cc:15]      Input-2: Shape [1,512,12,6]
+I0219 14:31:11.230628 2508725 tpu_asr_model.cc:15]      Input-3: Shape [1,8,8,136]
+I0219 14:31:11.230628 2508725 tpu_asr_model.cc:22]      Output-0: Shape [1,512,1,8]
+I0219 14:31:11.230629 2508725 tpu_asr_model.cc:22]      Output-1: Shape [1,96,128,128]
+I0219 14:31:11.230630 2508725 tpu_asr_model.cc:22]      Output-2: Shape [1,512,12,6]
+I0219 14:31:11.230631 2508725 tpu_asr_model.cc:62] TPU CTC:
+I0219 14:31:11.230633 2508725 tpu_asr_model.cc:15]      Input-0: Shape [1,512,1,8]
+I0219 14:31:11.230633 2508725 tpu_asr_model.cc:22]      Output-0: Shape [1,5538,1,8]
+I0219 14:31:11.230634 2508725 tpu_asr_model.cc:79] TPU Model Info:
+I0219 14:31:11.230634 2508725 tpu_asr_model.cc:80]      chunk_size 8
+I0219 14:31:11.230635 2508725 tpu_asr_model.cc:81]      num_left_chunks 16
+I0219 14:31:11.230636 2508725 tpu_asr_model.cc:82]      subsampling_rate 8
+I0219 14:31:11.230636 2508725 tpu_asr_model.cc:83]      right context 14
+I0219 14:31:11.230638 2508725 tpu_asr_model.cc:84]      sos 5537
+I0219 14:31:11.230638 2508725 tpu_asr_model.cc:85]      eos 5537
+I0219 14:31:11.230638 2508725 tpu_asr_model.cc:86]      is bidirectional decoder 0
+I0219 14:31:11.230639 2508725 tpu_asr_model.cc:87]      hidden_dim 512
+I0219 14:31:11.230641 2508725 params.h:236] Reading unit table ./bmodel/units.txt
+I0219 14:31:11.242403 2508727 decoder_main.cc:54] num frames 418
+I0219 14:31:11.260071 2508727 asr_decoder.cc:104] Required 71 get 71
+I0219 14:31:11.260669 2508727 tpu_asr_model.cc:145]     wenet encoder inference start
+I0219 14:31:11.274698 2508727 tpu_asr_model.cc:151]     wenet ctc inference
+I0219 14:31:11.276538 2508727 asr_decoder.cc:119] forward takes 15 ms, search takes 1 ms
+I0219 14:31:11.276819 2508727 asr_decoder.cc:104] Required 64 get 64
+I0219 14:31:11.277395 2508727 tpu_asr_model.cc:145]     wenet encoder inference start
+I0219 14:31:11.291445 2508727 tpu_asr_model.cc:151]     wenet ctc inference
+I0219 14:31:11.293371 2508727 asr_decoder.cc:119] forward takes 15 ms, search takes 1 ms
+I0219 14:31:11.293514 2508727 asr_decoder.cc:200] Partial CTC result 甚至出
+I0219 14:31:11.293520 2508727 decoder_main.cc:72] Partial result: 甚至出
+I0219 14:31:11.293530 2508727 asr_decoder.cc:104] Required 64 get 64
+I0219 14:31:11.294103 2508727 tpu_asr_model.cc:145]     wenet encoder inference start
+I0219 14:31:11.308060 2508727 tpu_asr_model.cc:151]     wenet ctc inference
+I0219 14:31:11.309971 2508727 asr_decoder.cc:119] forward takes 15 ms, search takes 1 ms
+I0219 14:31:11.310119 2508727 asr_decoder.cc:200] Partial CTC result 甚至出现交
+I0219 14:31:11.310125 2508727 decoder_main.cc:72] Partial result: 甚至出现交
+I0219 14:31:11.310135 2508727 asr_decoder.cc:104] Required 64 get 64
+I0219 14:31:11.310704 2508727 tpu_asr_model.cc:145]     wenet encoder inference start
+I0219 14:31:11.324647 2508727 tpu_asr_model.cc:151]     wenet ctc inference
+I0219 14:31:11.326591 2508727 asr_decoder.cc:119] forward takes 15 ms, search takes 1 ms
+I0219 14:31:11.326766 2508727 asr_decoder.cc:200] Partial CTC result 甚至出现交易几乎
+I0219 14:31:11.326774 2508727 decoder_main.cc:72] Partial result: 甚至出现交易几乎
+I0219 14:31:11.326786 2508727 asr_decoder.cc:104] Required 64 get 64
+I0219 14:31:11.327360 2508727 tpu_asr_model.cc:145]     wenet encoder inference start
+I0219 14:31:11.341286 2508727 tpu_asr_model.cc:151]     wenet ctc inference
+I0219 14:31:11.343219 2508727 asr_decoder.cc:119] forward takes 15 ms, search takes 1 ms
+I0219 14:31:11.343372 2508727 asr_decoder.cc:200] Partial CTC result 甚至出现交易几乎停滞的
+I0219 14:31:11.343377 2508727 decoder_main.cc:72] Partial result: 甚至出现交易几乎停滞的
+I0219 14:31:11.343387 2508727 asr_decoder.cc:104] Required 64 get 64
+I0219 14:31:11.343955 2508727 tpu_asr_model.cc:145]     wenet encoder inference start
+I0219 14:31:11.357940 2508727 tpu_asr_model.cc:151]     wenet ctc inference
+I0219 14:31:11.359941 2508727 asr_decoder.cc:119] forward takes 15 ms, search takes 1 ms
+I0219 14:31:11.360111 2508727 asr_decoder.cc:200] Partial CTC result 甚至出现交易几乎停滞的情况
+I0219 14:31:11.360116 2508727 decoder_main.cc:72] Partial result: 甚至出现交易几乎停滞的情况
+I0219 14:31:11.360126 2508727 asr_decoder.cc:104] Required 64 get 27
+I0219 14:31:11.360697 2508727 tpu_asr_model.cc:145]     wenet encoder inference start
+I0219 14:31:11.374732 2508727 tpu_asr_model.cc:151]     wenet ctc inference
+I0219 14:31:11.376614 2508727 asr_decoder.cc:119] forward takes 15 ms, search takes 1 ms
+I0219 14:31:11.376785 2508727 asr_decoder.cc:200] Partial CTC result 甚至出现交易几乎停滞的情况
+I0219 14:31:11.376953 2508727 asr_decoder.cc:200] Partial CTC result 甚至出现交易几乎停滞的情况
+I0219 14:31:11.376955 2508727 asr_decoder.cc:84] Rescoring cost latency: 0ms.
+I0219 14:31:11.376956 2508727 decoder_main.cc:72] Partial result: 甚至出现交易几乎停滞的情况
+I0219 14:31:11.376957 2508727 decoder_main.cc:104] test Final result: 甚至出现交易几乎停滞的情况
+I0219 14:31:11.376960 2508727 decoder_main.cc:105] Decoded 4203ms audio taken 112ms.
 [BMRT][bmcpu_setup:435] INFO:cpu_lib 'libcpuop.so' is loaded.
 bmcpu init: skip cpu_user_defined
 open usercpu.so, init user_cpu_init
@@ -134,12 +134,12 @@ open usercpu.so, init user_cpu_init
 [BMRT][load_bmodel:1503] INFO:pre net num: 0, load net num: 1
 [BMRT][load_tpu_module:1575] INFO:loading firmare in bmodel
 test 甚至出现交易几乎停滞的情况
-I0218 20:02:58.467502 2349253 decoder_main.cc:180] Total: decoded 4203ms audio taken 162ms.
-I0218 20:02:58.467532 2349253 decoder_main.cc:182] RTF: 0.03854
+I0219 14:31:11.397114 2508725 decoder_main.cc:180] Total: decoded 4203ms audio taken 112ms.
+I0219 14:31:11.397120 2508725 decoder_main.cc:182] RTF: 0.02665
 ```
 
 ### Server and client
-start websocket server
+* Step 1. Start websocket server
 ```sh
 # set -DWEBSOCKET=ON
 cmake -B build -DTPU=ON -DONNX=OFF -DTORCH=OFF -DWEBSOCKET=ON -DGRPC=OFF
@@ -151,7 +151,7 @@ export GLOG_v=3
     --num_left_chunks 16 \
     --rescoring_weight 0.0 \
     --tpu_model_dir ./bmodel \
-    --unit_path ./bmodel/units.txt
+    --unit_path ./bmodel/units.txt 2>&1 | tee log.txt
 I0218 14:05:29.312755 2256320 params.h:224] Reading SOPHGO TPU model from ./bmodel
 [BMRT][bmcpu_setup:435] INFO:cpu_lib 'libcpuop.so' is loaded.
 bmcpu init: skip cpu_user_defined
@@ -248,7 +248,7 @@ I0218 14:05:37.068529 2256349 asr_decoder.cc:200] Partial CTC result 甚至出�
 I0218 14:05:37.068531 2256349 asr_decoder.cc:84] Rescoring cost latency: 0ms.
 I0218 14:05:37.068584 2256349 websocket_server.cc:73] Final result: [{"sentence":"甚至出现交易几乎停滞的情况","word_pieces":[{"word":"甚","start":540,"end":640},{"word":"至","start":780,"end":880},{"word":"出","start":1100,"end":1200},{"word":"现","start":1340,"end":1440},{"word":"交","start":1580,"end":1680},{"word":"易","start":1820,"end":1920},{"word":"几","start":2140,"end":2240},{"word":"乎","start":2300,"end":2400},{"word":"停","start":2540,"end":2640},{"word":"滞","start":2780,"end":2880},{"word":"的","start":2940,"end":3040},{"word":"情","start":3180,"end":3280},{"word":"况","start":3420,"end":3520}]}]
 ```
-start client in another terminal
+* Step 2. Start client in another terminal
 ```sh
 export GLOG_logtostderr=1
 export GLOG_v=3
@@ -305,4 +305,99 @@ The purpose of hotword boosting is to increase the recognition accuracy of these
 
 # result "停滞"  -> "停止"
 test 甚至出现交易几乎停止的情况
+
+I0219 14:34:43.942099 2511659 params.h:224] Reading SOPHGO TPU model from ./bmodel
+I0219 14:34:44.577302 2511659 tpu_asr_model.cc:60] TPU Encoder:
+I0219 14:34:44.577345 2511659 tpu_asr_model.cc:15]      Input-0: Shape [1,1,71,80]
+I0219 14:34:44.577353 2511659 tpu_asr_model.cc:15]      Input-1: Shape [1,96,128,128]
+I0219 14:34:44.577358 2511659 tpu_asr_model.cc:15]      Input-2: Shape [1,512,12,6]
+I0219 14:34:44.577363 2511659 tpu_asr_model.cc:15]      Input-3: Shape [1,8,8,136]
+I0219 14:34:44.577366 2511659 tpu_asr_model.cc:22]      Output-0: Shape [1,512,1,8]
+I0219 14:34:44.577371 2511659 tpu_asr_model.cc:22]      Output-1: Shape [1,96,128,128]
+I0219 14:34:44.577375 2511659 tpu_asr_model.cc:22]      Output-2: Shape [1,512,12,6]
+I0219 14:34:44.577379 2511659 tpu_asr_model.cc:62] TPU CTC:
+I0219 14:34:44.577384 2511659 tpu_asr_model.cc:15]      Input-0: Shape [1,512,1,8]
+I0219 14:34:44.577389 2511659 tpu_asr_model.cc:22]      Output-0: Shape [1,5538,1,8]
+I0219 14:34:44.577394 2511659 tpu_asr_model.cc:79] TPU Model Info:
+I0219 14:34:44.577396 2511659 tpu_asr_model.cc:80]      chunk_size 8
+I0219 14:34:44.577400 2511659 tpu_asr_model.cc:81]      num_left_chunks 16
+I0219 14:34:44.577404 2511659 tpu_asr_model.cc:82]      subsampling_rate 8
+I0219 14:34:44.577409 2511659 tpu_asr_model.cc:83]      right context 14
+I0219 14:34:44.577412 2511659 tpu_asr_model.cc:84]      sos 5537
+I0219 14:34:44.577415 2511659 tpu_asr_model.cc:85]      eos 5537
+I0219 14:34:44.577419 2511659 tpu_asr_model.cc:86]      is bidirectional decoder 0
+I0219 14:34:44.577423 2511659 tpu_asr_model.cc:87]      hidden_dim 512
+I0219 14:34:44.577430 2511659 params.h:236] Reading unit table ./bmodel/units.txt
+I0219 14:34:44.586053 2511659 params.h:261] Reading context context.txt
+I0219 14:34:44.600006 2511661 decoder_main.cc:54] num frames 418
+I0219 14:34:44.621109 2511661 asr_decoder.cc:104] Required 71 get 71
+I0219 14:34:44.622056 2511661 tpu_asr_model.cc:145]     wenet encoder inference start
+I0219 14:34:44.636265 2511661 tpu_asr_model.cc:151]     wenet ctc inference
+I0219 14:34:44.645341 2511661 asr_decoder.cc:119] forward takes 16 ms, search takes 7 ms
+I0219 14:34:44.646191 2511661 asr_decoder.cc:104] Required 64 get 64
+I0219 14:34:44.647502 2511661 tpu_asr_model.cc:145]     wenet encoder inference start
+I0219 14:34:44.661828 2511661 tpu_asr_model.cc:151]     wenet ctc inference
+I0219 14:34:44.671768 2511661 asr_decoder.cc:119] forward takes 16 ms, search takes 8 ms
+I0219 14:34:44.672286 2511661 asr_decoder.cc:200] Partial CTC result 甚至出
+I0219 14:34:44.672300 2511661 asr_decoder.cc:212] Contexts:
+I0219 14:34:44.672317 2511661 decoder_main.cc:72] Partial result: 甚至出
+I0219 14:34:44.672350 2511661 asr_decoder.cc:104] Required 64 get 64
+I0219 14:34:44.673466 2511661 tpu_asr_model.cc:145]     wenet encoder inference start
+I0219 14:34:44.687775 2511661 tpu_asr_model.cc:151]     wenet ctc inference
+I0219 14:34:44.697793 2511661 asr_decoder.cc:119] forward takes 16 ms, search takes 8 ms
+I0219 14:34:44.698377 2511661 asr_decoder.cc:200] Partial CTC result 甚至出现交
+I0219 14:34:44.698397 2511661 asr_decoder.cc:212] Contexts:
+I0219 14:34:44.698416 2511661 decoder_main.cc:72] Partial result: 甚至出现交
+I0219 14:34:44.698451 2511661 asr_decoder.cc:104] Required 64 get 64
+I0219 14:34:44.699791 2511661 tpu_asr_model.cc:145]     wenet encoder inference start
+I0219 14:34:44.714123 2511661 tpu_asr_model.cc:151]     wenet ctc inference
+I0219 14:34:44.724177 2511661 asr_decoder.cc:119] forward takes 16 ms, search takes 8 ms
+I0219 14:34:44.724795 2511661 asr_decoder.cc:200] Partial CTC result 甚至出现交易几乎
+I0219 14:34:44.724822 2511661 asr_decoder.cc:212] Contexts:
+I0219 14:34:44.724841 2511661 decoder_main.cc:72] Partial result: 甚至出现交易几乎
+I0219 14:34:44.724876 2511661 asr_decoder.cc:104] Required 64 get 64
+I0219 14:34:44.726214 2511661 tpu_asr_model.cc:145]     wenet encoder inference start
+I0219 14:34:44.740545 2511661 tpu_asr_model.cc:151]     wenet ctc inference
+I0219 14:34:44.751394 2511661 asr_decoder.cc:119] forward takes 16 ms, search takes 9 ms
+I0219 14:34:44.751991 2511661 asr_decoder.cc:200] Partial CTC result 甚至出现交易几乎停止的
+I0219 14:34:44.752027 2511661 asr_decoder.cc:212] Contexts: 停止,
+I0219 14:34:44.752044 2511661 decoder_main.cc:72] Partial result: 甚至出现交易几乎停止的
+I0219 14:34:44.752077 2511661 asr_decoder.cc:104] Required 64 get 64
+I0219 14:34:44.753245 2511661 tpu_asr_model.cc:145]     wenet encoder inference start
+I0219 14:34:44.767550 2511661 tpu_asr_model.cc:151]     wenet ctc inference
+I0219 14:34:44.777616 2511661 asr_decoder.cc:119] forward takes 16 ms, search takes 8 ms
+I0219 14:34:44.778268 2511661 asr_decoder.cc:200] Partial CTC result 甚至出现交易几乎停止的情况
+I0219 14:34:44.778311 2511661 asr_decoder.cc:212] Contexts: 停止,
+I0219 14:34:44.778329 2511661 decoder_main.cc:72] Partial result: 甚至出现交易几乎停止的情况
+I0219 14:34:44.778354 2511661 asr_decoder.cc:104] Required 64 get 27
+I0219 14:34:44.779408 2511661 tpu_asr_model.cc:145]     wenet encoder inference start
+I0219 14:34:44.793558 2511661 tpu_asr_model.cc:151]     wenet ctc inference
+I0219 14:34:44.798799 2511661 asr_decoder.cc:119] forward takes 15 ms, search takes 4 ms
+I0219 14:34:44.799345 2511661 asr_decoder.cc:200] Partial CTC result 甚至出现交易几乎停止的情况
+I0219 14:34:44.799384 2511661 asr_decoder.cc:212] Contexts: 停止,
+I0219 14:34:44.799985 2511661 asr_decoder.cc:200] Partial CTC result 甚至出现交易几乎停止的情况
+I0219 14:34:44.800017 2511661 asr_decoder.cc:212] Contexts: 停止,
+I0219 14:34:44.800022 2511661 asr_decoder.cc:84] Rescoring cost latency: 0ms.
+I0219 14:34:44.800026 2511661 decoder_main.cc:72] Partial result: 甚至出现交易几乎停止的情况
+I0219 14:34:44.800030 2511661 decoder_main.cc:104] test Final result: 甚至出现交易几乎停止的情况
+I0219 14:34:44.800037 2511661 decoder_main.cc:105] Decoded 4203ms audio taken 177ms.
+[BMRT][bmcpu_setup:435] INFO:cpu_lib 'libcpuop.so' is loaded.
+bmcpu init: skip cpu_user_defined
+open usercpu.so, init user_cpu_init
+[BMRT][BMProfile:59] INFO:Profile For arch=3
+[BMRT][BMProfileDeviceBase:190] INFO:gdma=0, tiu=0, mcu=0
+[BMRT][load_bmodel:1594] INFO:Loading bmodel from [./bmodel/encoder.bmodel]. Thanks for your patience...
+[BMRT][load_bmodel:1503] INFO:pre net num: 0, load net num: 1
+[BMRT][load_tpu_module:1575] INFO:loading firmare in bmodel
+[BMRT][bmcpu_setup:435] INFO:cpu_lib 'libcpuop.so' is loaded.
+bmcpu init: skip cpu_user_defined
+open usercpu.so, init user_cpu_init
+[BMRT][BMProfile:59] INFO:Profile For arch=3
+[BMRT][BMProfileDeviceBase:190] INFO:gdma=0, tiu=0, mcu=0
+[BMRT][load_bmodel:1594] INFO:Loading bmodel from [./bmodel/ctc.bmodel]. Thanks for your patience...
+[BMRT][load_bmodel:1503] INFO:pre net num: 0, load net num: 1
+[BMRT][load_tpu_module:1575] INFO:loading firmare in bmodel
+test 甚至出现交易几乎停止的情况
+I0219 14:34:44.825902 2511659 decoder_main.cc:180] Total: decoded 4203ms audio taken 177ms.
+I0219 14:34:44.825933 2511659 decoder_main.cc:182] RTF: 0.04211
 ```
