@@ -48,7 +48,8 @@ export GLOG_v=3
     --rescoring_weight 0.0 \
     --wav_path ./data/test.wav \
     --tpu_model_dir ./bmodel \
-    --unit_path ./bmodel/units.txt 2>&1 | tee log.txt
+    --unit_path ./bmodel/units.txt \
+    --continuous_decoding 2>&1 | tee log.txt
 
 I0219 14:31:10.723145 2508725 params.h:224] Reading SOPHGO TPU model from ./bmodel
 I0219 14:31:11.230612 2508725 tpu_asr_model.cc:60] TPU Encoder:
@@ -254,7 +255,8 @@ export GLOG_logtostderr=1
 export GLOG_v=3
 ./build/bin/websocket_client_main \
     --hostname 127.0.0.1 --port 10086 \
-    --wav_path ./data/test.wav
+    --wav_path ./data/test.wav \
+    --continuous_decoding
 
 I0218 14:05:32.534451 2256348 websocket_client.cc:67] {"status":"ok","type":"server_ready"}
 I0218 14:05:32.536726 2256346 websocket_client_main.cc:56] Send 8000 samples
@@ -300,6 +302,7 @@ The purpose of hotword boosting is to increase the recognition accuracy of these
     --wav_path ./data/test.wav \
     --tpu_model_dir ./bmodel \
     --unit_path ./bmodel/units.txt \
+    --continuous_decoding \
     --context_path context.txt \
     --context_score 10 2>&1 | tee log.txt
 

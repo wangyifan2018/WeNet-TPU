@@ -40,16 +40,20 @@ struct CtcEndpointConfig {
   /// code. If you want to disable a rule, you can set the silence-timeout for
   /// that rule to a very large number.
 
-  /// rule1 times out after 5000 ms of silence, even if we decoded nothing.
+  /// rule1 times out after 6100 ms of silence, even if we decoded nothing.
   CtcEndpointRule rule1;
-  /// rule2 times out after 1000 ms of silence after decoding something.
+  /// rule2 times out after 5800 ms of silence after decoding something.
   CtcEndpointRule rule2;
-  /// rule3 times out after the utterance is 20000 ms long, regardless of
-  /// anything else.
+    /// rule2 times out after 5500 ms of silence after decoding something.
   CtcEndpointRule rule3;
+    /// rule2 times out after 5200 ms of silence after decoding something.
+  CtcEndpointRule rule4;
+  /// rule5 times out after the utterance is 20000 ms long, regardless of
+  /// anything else.
+  CtcEndpointRule rule5;
 
   CtcEndpointConfig()
-      : rule1(false, 5000, 0), rule2(true, 1000, 0), rule3(false, 0, 20000) {}
+      : rule1(true, 6100, 0), rule2(true, 5800, 0), rule3(true, 5500, 0), rule4(true, 5200, 0), rule5(false, 0, 20000) {}
 };
 
 class CtcEndpoint {

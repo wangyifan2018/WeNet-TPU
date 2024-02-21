@@ -68,12 +68,18 @@ bool CtcEndpoint::IsEndpoint(
   if (RuleActivated(config_.rule1, "rule1", decoded_something, trailing_silence,
                     utterance_length))
     return true;
-  // if (RuleActivated(config_.rule2, "rule2", decoded_something, trailing_silence,
-  //                   utterance_length))
-  //   return true;
-  // if (RuleActivated(config_.rule3, "rule3", decoded_something, trailing_silence,
-  //                   utterance_length))
-  //   return true;
+  if (RuleActivated(config_.rule2, "rule2", decoded_something, trailing_silence,
+                    utterance_length))
+    return true;
+  if (RuleActivated(config_.rule3, "rule3", decoded_something, trailing_silence,
+                    utterance_length))
+    return true;
+  if (RuleActivated(config_.rule4, "rule4", decoded_something, trailing_silence,
+                    utterance_length))
+    return true;
+  if (RuleActivated(config_.rule5, "rule5", decoded_something, trailing_silence,
+                    utterance_length))
+    return true;
   return false;
 }
 
