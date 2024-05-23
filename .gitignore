@@ -2,3 +2,5 @@ build/
 fc_base/
 bmodel/*
 log.txt
+onnx/
+*.zip

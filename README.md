@@ -26,14 +26,30 @@ cmake --build build -j$(nproc)
 
 * Step 3. Download the model and place it in the `bmodel` folder.
 
+Download from sftp server
 ``` sh
-# Download bmodel
-https://drive.google.com/drive/folders/1QCynsCRFdyS6TgM3yLNjNHLvKfojN5Y5?usp=sharing
+pip3 install dfss -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade
+python3 -m dfss --url=open@sophgo.com:ezoo/wenet/bmodel.zip
+unzip bmodel.zip
 
 ./bmodel
 ├── ctc.bmodel
 ├── encoder.bmodel
 └── units.txt
+```
+
+[optional] compile by yourself, setup [tpu-mlr](https://github.com/sophgo/tpu-mlir) and run ./scripts/gen_bmodel.sh
+
+``` sh
+python3 -m dfss --url=open@sophgo.com:ezoo/wenet/onnx.zip
+unzip onnx.zip
+
+./onnx
+├── ctc_optimized_float_model.onnx
+└── encoder_optimized_float_model.onnx
+
+cd scripts
+./gen_bmodel.sh
 ```
 
 * Step 4. Testing on Sophgo BM1684X(PCIE/SOC), the RTF(real time factor) is shown in console.
